@@ -13,7 +13,8 @@ for (let i = 0; i < buttons.length; i++) {
         // const audio = new Audio('./sounds/tom-1.mp3')
         // audio.play()
         let buttonInnerHTML = this.innerHTML
-        makeSound(buttonInnerHTML)       
+        makeSound(buttonInnerHTML) 
+        animationButton(buttonInnerHTML)      
     })
 }
 // document.querySelector(".drum").addEventListener("click", function () {
@@ -23,6 +24,7 @@ for (let i = 0; i < buttons.length; i++) {
 //This part is responsible for the key press
 document.addEventListener("keydown", function(e) {
     makeSound(e.key)
+    animationButton(e.key)
 })
 
 //function that makes sound to be played
@@ -65,4 +67,15 @@ function makeSound (key) {
 
         default: console.log(key)
     }
+}
+
+//Function for the animation of the button
+function animationButton (currentKey) {
+    let activeButton = document.querySelector("." + currentKey)
+
+    activeButton.classList.add("pressed")
+
+    setTimeout(function() {
+        activeButton.classList.remove("pressed")
+    }, 100)
 }
